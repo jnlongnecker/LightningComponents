@@ -1,0 +1,8 @@
+/*
+    This is where we can define our custom CSS styles
+*/
+
+/* .THIS acts as a class appended to all of the outermost component elements */
+.THIS {
+    padding: 2rem 20%;
+}

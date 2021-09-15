@@ -1,0 +1,46 @@
+<!-- Why Aura?
+    - The Lightning Component Framework has Aura and Web components. We'll focus on Aura components first
+    - LCF is designed around Single Page Applications vs Multiple Page Applications in VisualForce
+      - Benefits: Less server calls (more performant), responsive styling
+      - LCF also promotes code reusability
+    - Use the mobile-first principle/ideology to design responsively
+-->
+
+
+<!-- Our component's declaration goes between <aura:component> tags -->
+<!-- We can implement a Component Accessibility Interface to allow the component to be used in different places -->
+<!-- All interfaces can be found here: https://developer.salesforce.com/docs/component-library/overview/interfaces -->
+<aura:component implements="forceCommunity:availableForAllPageTypes">
+  <!-- Aura Attributes allow us to define custom attributes for our components -->
+  <!-- By convention, these are placed at the top of a component declaration -->
+  <aura:attribute name="numChildren" type="Integer" default="2" />
+  <aura:attribute name="allGuitarists" type="Object[]" access="private" />
+  <aura:attribute name="displayGuitarists" type="Object[]" access="private" />
+  <!-- 
+        Breakdown of an attribute:
+        - name: this is the attribute name which is referenced on declaration of the component
+        - type: this is the Apex analagous data type the attribute has. Note that if a collection of sObjects is to be used,
+          this must be an array (Account[]). Valid types = Boolean, Date, DateTime, Decimal, Double, Integer, Long, String, Object
+        - default: if no value is specified, the attribute defaults to the default value
+  -->
+  <!-- Don't worry about this for right now, but we can handle non-primitive events with the aura:handler -->
+  <aura:handler name="init" value="{!this}" action="{!c.Initialize}" />
+
+  <div class="container">
+    <!-- We can use normal HTML in our Aura Components -->
+    <p>Here are some child components below</p>
+    <hr />
+
+    <!-- We can also use prebuilt components -->
+    <!-- We're using the v. value provider to reference our attributes -->
+    <div>
+      <aura:iteration items="{!v.displayGuitarists}" var="guitarist">
+
+        <!-- We can pass in data via the attributes defined on the child component -->
+        <c:GuitaristInfo data="{!guitarist}" />
+      </aura:iteration>
+    </div>
+    <!-- We can call JS functions using the c. value provider -->
+    <lightning:button label="Shuffle" onclick="{!c.Shuffle}" />
+  </div>
+</aura:component>

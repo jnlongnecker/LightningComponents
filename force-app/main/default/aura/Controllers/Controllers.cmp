@@ -1,0 +1,32 @@
+<!-- Let's talk more about the controllers of Aura -->
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId" controller="AuraController">
+    <aura:attribute name="acc" type="Account" access="private" />
+
+    <div>
+        <!-- The lightning:card component is a nice way of displaying some related information -->
+        <lightning:card title="{!v.acc == null ? 'Click Generate!' : v.acc.Name}" iconName="standard:account">
+
+            <!-- The aura:set sets a certain attribute to what is contained within -->
+            <aura:set attribute="actions">
+                <lightning:button label="Generate" onclick="{!c.PullAccount}" />
+            </aura:set>
+
+            <!-- The aura:if can conditionally CREATE components -->
+            <!-- You read that right: it's doesn't just hide them, the interior components are *poof* GONE! -->
+            <aura:if isTrue="{!v.acc != null}">
+
+                <!-- lightning:recordForm is one of 4 components that uses the LDS (Lightning Data Service) -->
+                <lightning:recordForm recordId="{!v.acc.Id}" objectApiName="Account" columns="2" layoutType="Full"
+                    mode="View" />
+                <!--
+                    Some details about the LDS:
+                    - Handles server calls for us
+                    - Very efficient (only instantiated once per object, regardless of how many components use it)
+                    - Caches the record being used
+                    - LDS Components: lightning:recordForm, recordViewForm, recordEditForm and force:recordData
+                    - Only works with 1 record at a time, and recordForm cannot prepopulate any field values (in case of insertion)
+                -->
+            </aura:if>
+        </lightning:card>
+    </div>
+</aura:component>

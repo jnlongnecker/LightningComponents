@@ -1,0 +1,46 @@
+
+/* All selectors must include .THIS, which acts as a class appended to all outermost elements of the component */
+h2.THIS {
+    font-size: 2rem;
+    padding-left: 14rem;
+}
+
+.THIS img {
+    height: 9rem;
+}
+
+.THIS .collapsed {
+    vertical-align: top;
+    padding: 0 .5rem;
+    max-height: 0vh;
+    transition: .4s;
+    overflow: hidden;
+}
+
+.THIS .expanded {
+    padding: 0 .5rem .5rem;
+    vertical-align: top;
+    max-height: 9rem;
+    overflow: hidden;
+    transition: .4s;
+}
+
+.THIS.holder {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.THIS .img-container {
+    min-width: 16rem;
+    text-align: center;
+    border-color: rgb(0, 0, 0, 0);
+    border-width: 5px;
+    border-style: solid;
+    background-color: black;
+}
+
+.THIS .img-container:hover {
+    cursor: pointer;
+    border-color: darkred;
+}

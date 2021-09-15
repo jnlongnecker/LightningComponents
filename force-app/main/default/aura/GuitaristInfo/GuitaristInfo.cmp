@@ -1,0 +1,18 @@
+<aura:component>
+
+    <!-- Setting a default value for an Object doesn't really work. Use a Map instead -->
+    <aura:attribute name="data" type="Map" default="{'name':'No Guitarist', 'image':'/BrokenImage.png', 
+        'description':'No guitarist provided'}" />
+
+    <!-- We use expression syntax here to reference our attributes and methods -->
+    <h2>{!v.data.name}</h2>
+    <div class="holder">
+        <div class="img-container" onclick="{!c.imgSelect}">
+
+            <!-- We can use static resources in Aura components as well, but URLFOR() cannot be used -->
+            <img src="{!$Resource.GuitaristImages + v.data.image}" alt="{!v.data.name}" />
+        </div>
+        <p class="collapsed">{!v.data.description}</p>
+    </div>
+
+</aura:component>

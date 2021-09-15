@@ -1,0 +1,9 @@
+<aura:documentation>
+	<aura:description>Documentation</aura:description>
+	<aura:example name="ExampleName" ref="exampleComponentName" label="Label">
+		Example Description
+	</aura:example>
+</aura:documentation>
+
+<!-- Use to provide documentation on how to use the component
+     This is visible on the Lightning Component Library for your org -->

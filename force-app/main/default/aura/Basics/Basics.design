@@ -1,0 +1,4 @@
+<design:component>
+
+</design:component>
+<!-- Here, we can expose attributes to declarative builder tools (Lightning App Builder, Flow Builder) -->
