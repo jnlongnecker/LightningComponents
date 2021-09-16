@@ -1,0 +1,14 @@
+<aura:component>
+    <aura:attribute name="tuning" type="String" default="E" />
+    <aura:attribute name="number" type="Integer" default="1" />
+
+    <!-- Constructs a fretboard for a single string using 24 frets -->
+    <div>
+        <div class="fretboard">
+            <aura:iteration items="1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24" var="fretNumber">
+                <c:Fret fretNumber="{!fretNumber}" tuning="{!v.tuning}" string="{!v.number}" />
+            </aura:iteration>
+            <p class="tuning-char">{!v.tuning}</p>
+        </div>
+    </div>
+</aura:component>

@@ -1,0 +1,30 @@
+<aura:component>
+    <aura:attribute name="strings" type="String[]" default="E,A,D,G,B,E" access="private" />
+
+    <!-- Just like an application event, we register the event the same -->
+    <aura:registerEvent name="reset" type="c:SettingsUpdated" />
+
+    <!-- Using a combination of iteration, inputs and JS functions to create some dynamic settings -->
+    <div>
+
+        <!-- Used to store how many strings we want to display -->
+        <lightning:input label="Number of Strings" type="number" aura:id="numStrings" value="{!v.strings.length}"
+            onchange="{!c.StringsChanged}" />
+
+        <!-- Used to contain our options for different strings -->
+        <div class="settings-container">
+            <aura:iteration items="{!v.strings}" var="tunedTo">
+                <lightning:select aura:id="selection-option" label="{!'String ' + (_index + 1)}" value="{!tunedTo}">
+                    <aura:iteration items="{!v.strings}" var="option">
+                        <option text="{!option}"></option>
+                    </aura:iteration>
+                </lightning:select>
+            </aura:iteration>
+        </div>
+
+        <!-- Used to house the submit button -->
+        <div class="button-holder">
+            <lightning:button variant="brand" label="Submit" onclick="{!c.ChangesSubmitted}" />
+        </div>
+    </div>
+</aura:component>

@@ -1,0 +1,18 @@
+.THIS {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 40%;
+}
+
+.THIS .settings-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.THIS .button-holder {
+    display: inline;
+    margin-top: .5rem;
+}

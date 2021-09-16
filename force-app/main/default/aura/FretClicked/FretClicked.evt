@@ -1,0 +1,5 @@
+<aura:event type="APPLICATION" description="A fret on the fretboard was clicked">
+    <aura:attribute name="fretNumber" type="Integer" />
+    <aura:attribute name="string" type="Integer" />
+    <aura:attribute name="note" type="String" />
+</aura:event>

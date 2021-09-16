@@ -9,5 +9,6 @@
         We place our little baby component in the harness and it holds it securely, safe from chaos 
         Hence the name "Harness App"
     -->
-    <c:Controllers />
+    <c:Guitar />
+    <c:Forms />
 </aura:application>

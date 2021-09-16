@@ -1,0 +1,12 @@
+.THIS .fretboard {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    margin: 0;
+    padding: 0;
+}
+
+.THIS .tuning-char {
+    font-weight: bold;
+    order: -1;
+}

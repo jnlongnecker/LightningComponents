@@ -1,0 +1,76 @@
+<aura:component controller="ApexControllerForms">
+    <aura:attribute name="myContact" type="Contact" access="private" />
+    <aura:attribute name="myAccount" type="Account" />
+
+    <!-- We can handle the System event init to do setup -->
+    <aura:handler name="init" value="{!this}" action="{!c.Initialize}" />
+
+    <!-- This component is all about forms, so strap in -->
+    <!-- 
+        We have 4 components that use the Lightning Data Service (LDS) : 
+        - lightning:recordForm
+        - lightning:recordViewForm
+        - lightning:recordEditForm
+        - force:recordData
+    -->
+
+    <!-- We've previously looked at lightning:recordForm -->
+    <div>
+        <lightning:recordForm recordId="{!v.myContact.Id}" objectApiName="Contact" columns="2" layoutType="Full"
+            mode="readonly" />
+    </div>
+
+    <!-- However, lightning:recordViewForm is not premade! We must construct our form for viewing -->
+    <lightning:recordViewForm recordId="{!v.myContact.Id}" objectApiName="Contact">
+        <lightning:card title="Record View Form">
+            <lightning:outputField fieldName="Name" />
+            <lightning:outputField fieldName="AccountId" />
+            <lightning:outputField fieldName="Phone" />
+        </lightning:card>
+    </lightning:recordViewForm>
+
+    <!-- By using the recordEditForm, we have to construct it ourselves but at least we can now prepopulate values-->
+    <lightning:recordEditForm recordId="{!v.myContact.Id}" objectApiName="Contact">
+        <lightning:card title="Record Edit Form">
+            <lightning:inputField fieldName="Name" />
+            <lightning:inputField fieldName="AccountId" />
+
+            <!-- By specifying a value to lightning:inputField, it prepopulates -->
+            <lightning:inputField fieldName="HomePhone" value="8327775689" />
+            <lightning:inputField fieldName="Phone" />
+        </lightning:card>
+    </lightning:recordEditForm>
+
+    <!-- If we need to do even more customization, or if we want to retrieve info, we can use the force:recordData -->
+    <!-- We specify an Id, an attribute to put the result, and what we want to grab: fields or a layout -->
+    <aura:if isTrue="{!v.myContact != null}">
+
+        <!-- Note that we're in the aura:if because this will be rendered before our callback finishes otherwise! -->
+        <force:recordData recordId="{!v.myContact.AccountId}" targetFields="{!v.myAccount}"
+            fields="Name,Rating,Phone" />
+    </aura:if>
+
+    <!-- From there, everything is on us: even the save functionality! -->
+    <div>
+        <lightning:card title="{!v.myAccount.Name}">
+            Account Rating:
+            <lightning:formattedText value="{!v.myAccount.Rating}" /> <br />
+            Account Phone:
+            <lightning:formattedText value="{!v.myAccount.Phone}" />
+        </lightning:card>
+    </div>
+
+    <!-- Security in Aura -->
+    <!--
+        Client side handled through the Lightning Locker
+        - JS strict mode
+        - Limits DOM access
+        - Prevents unsupported JS methods
+        - Restricts use of eval() function
+        - HTML and global objects placed in secure wrappers
+        Doesn't work in Internet Explorer 11
+
+        Server side security is on us!
+    -->
+
+</aura:component>

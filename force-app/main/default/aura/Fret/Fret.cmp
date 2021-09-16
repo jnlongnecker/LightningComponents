@@ -1,0 +1,17 @@
+<aura:component>
+    <aura:attribute name="fretNumber" type="Integer" default="1" />
+    <aura:attribute name="tuning" type="String" default="E" />
+    <aura:attribute name="string" type="Integer" default="1" />
+    <aura:attribute name="chosen" type="Boolean" access="private" />
+
+    <!-- To be able to send an event, we must first register the event with the component -->
+    <aura:registerEvent name="FretClicked" type="c:FretClicked" />
+
+    <!-- To be able to handle an event, we need to use the handler and specify what event we want to handle-->
+    <aura:handler event="c:FretClicked" action="{!c.OtherFretSelected}" />
+
+    <!-- VS code doesn't like expression syntax with the styles attribute, but it still works -->
+    <div class="fret" style="{!'width:' + (((25 - v.fretNumber)/24) * 3 + 2) + 'rem;'}" onclick="{!c.FretSelected}">
+        <hr class="{!'fret-string' + (v.chosen == true ? ' on' : ' off')}" style="{!'height:' + v.string + 'px;'}" />
+    </div>
+</aura:component>

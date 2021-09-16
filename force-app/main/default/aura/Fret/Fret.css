@@ -1,0 +1,32 @@
+.THIS.fret {
+    border-left: 5px solid white;
+    background-color: black;
+    height: 1.5rem;
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+
+.THIS.fret:hover {
+    cursor: pointer;
+}
+
+.THIS .fret-string {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    border: 0;
+}
+
+.THIS.fret:hover .fret-string {
+    background: rgb(255, 172, 172);
+}
+
+.THIS .off {
+    background: white;
+}
+
+.THIS .on {
+    background: red;
+}

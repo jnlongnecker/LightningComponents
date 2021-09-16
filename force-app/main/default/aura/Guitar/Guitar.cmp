@@ -1,0 +1,22 @@
+<aura:component>
+    <aura:attribute name="currentNote" type="String" access="private" />
+    <aura:attribute name="tuning" type="String[]" access="private" default="['E','A','D','G','B','E']" />
+
+    <!-- Our guitar component is listening for both of our 2 events! Notice the difference in syntax -->
+    <aura:handler event="c:FretClicked" action="{!c.NewFretClicked}" />
+    <!-- For component events, the name we specify MUST MATCH the name we gave it when registering -->
+    <aura:handler name="reset" event="c:SettingsUpdated" action="{!c.SettingsUpdated}" />
+
+    <div>
+        <div class="note">
+            {!v.currentNote == null ? 'Click a Fret!' : v.currentNote}
+        </div>
+        <div class="guitar">
+            <aura:iteration items="{!v.tuning}" var="string">
+                <c:String number="{!v.tuning.length - _index}" tuning="{!string}" />
+            </aura:iteration>
+        </div>
+        <c:Settings />
+    </div>
+
+</aura:component>

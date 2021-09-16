@@ -1,0 +1,3 @@
+<aura:event type="COMPONENT" description="Contains information about new settings">
+    <aura:attribute name="tuning" type="string[]" />
+</aura:event>
