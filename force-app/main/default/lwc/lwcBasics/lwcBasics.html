@@ -1,0 +1,117 @@
+<!--
+    Lightning Web Components
+    - Use the modern web standard
+    - Frameworks like React, Angular, and Aura are really nice, but can be quite different and abstracts the process
+      - Now, native JS has caught up with these framework features and they aren't necessary
+    - Enter: Web Components
+    - Runs natively in the browser
+      - Lightweight and even better performance
+    - There are some features that Aura has that Web does not. Otherwise, use LWC
+      - A list can be found here: https://developer.salesforce.com/docs/component-library/documentation/en/lwc/lwc.get_started_supported_experiences
+
+    - If you built an application hosted outside of Experience Sites, imagine the frameworks you'd have to know:
+      - Aura for the SF side
+      - React, Angular or Vue for the site
+    - LWC are open source and also can be used without SF at all
+
+    - In order to begin developing these, we can use VS Code with a bit of setup or we can use: webcomponents.dev/create/lwc
+    - If you want to use VS Code:
+      - Install Node.js
+      - Run: npm install -g node-gyp
+      - Run: sfdx plugins:install @salesforce/lwc-dev-server
+        - Optionally for mobile, also run: sfdx plugins:install @salesforce/lwc-dev-mobile
+      - Use the command palette to start and stop the local server
+-->
+
+<!--
+    Each component lives inside its own folder. This folder will define the names of the files required in it. These folders
+    also have some requirements to the name:
+    - Must begin with a lowercase letter
+    - Must contain only alphanumeric or underscore characters (no special characters like %, $, ;, \, etc)
+    - Must be unique in the namespace
+    - Can't include whitespace
+    - Can't end in an underscore
+    - Can't contain 2 consectutive underscores
+    - Can't contain a hyphen
+
+    HTML standards require custom elements to contain a hyphen. After all, that's what these components are: custom elements.
+    Our components will always meet this standard because the format for a component is: 
+      namespace-component-name
+    What's that? Our component names cannot contain hyphens you say? Yes, if we use camelCase notation, when we reference the component
+    name it will convert it to kebab-case such as above. Best practice? Only use alphanumeric characters and camelCase your names.
+-->
+
+
+<!--
+    On to the files themselves
+    HTML - A normal HTML file, just put in a template tag to take advantage of components
+    JS - A bit different now, contains a class for our component
+    Meta - The metadata file for our component. We'll unfortunately need to manipulate this for certain features
+    Optional: CSS - Style declarations for our component
+-->
+<template>
+  <!-- SHADOW BOUNDARY HERE -->
+
+  <div class="container">
+    <!-- The template tag can be imagined as the bounds of the virtual DOM of the component -->
+    <h1 class="slds-text-heading_large">Basics of Lightning Web Components</h1>
+
+    <!-- Directives are special HTML attributes we can use for some basic but very useful functionality -->
+
+    <!-- if:true|false allows conditional rendering for a truthy or falsey value -->
+    <template if:true={detailsActive}>
+      <p>We can use Directives to conditionally render!</p>
+    </template>
+
+    <!-- THIS IS NOT EXPRESSION SYNTAX! These are called Identifiers, and reference properties and methods -->
+    <lightning-button label={btnLabel} onclick={handleClick}></lightning-button>
+
+    <p>We can also used Directives to iterate over a list</p>
+
+    <div class="iteration-holder">
+      <ul>
+        <!-- for:each will loop over a collection, and for:item gives a variable for the item. for:index will set your index value -->
+        <template for:each={myGuitarists} for:item="guitarist">
+
+          <!-- Each item must have a key using the key directive. It must be a string/number, and must be unique -->
+          <li class="info-holder" key={guitarist.name}>
+            <div class="info">{guitarist.name}</div>
+            <div class="info"><img src={guitarist.image} /></div>
+          </li>
+        </template>
+      </ul>
+
+      <ul>
+        <p>Using the iterator directive, we can do special functionality on the first and last elements!</p>
+        <!-- The iterator directive works like for:each, but can perform special actions on the first and last value -->
+        <template iterator:myiterator={myGuitarists}>
+          <li key={myiterator.value.name}>
+
+            <!-- Combining the if:true|false directive with the first and last -->
+            <hr if:true={myiterator.first} />
+            {myiterator.value.name}
+            <hr if:true={myiterator.last} />
+          </li>
+        </template>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SHADOW BOUNDARY HERE -->
+</template>
+<!-- Lets take a moment to speak about the Shadow DOM -->
+<!--
+     The Shadow DOM is a modern design standard that will provide encapsulation for your component. Each component has its own 
+     Shadow DOM, the structure of which is called the shadow tree. The Shadow DOM begins and ends with the shadow boundary.
+     
+     So what happens at the shadow boundary? A few things:
+     - CSS styles stop cascading
+     - Events bubbling up and crossing the boundary will change property values to match the listening scope
+       - This is called event retargeting. The value of Event.target normally holds the element that was the target of the
+         event. For example, if you were to click on a <p> tag, the target would be that <p> tag. If this was not changed,
+         it would bypass the encapsulation of the Shadow DOM. So instead, this property is changed once the event bubbles
+         past the shadow boundary. So instead, the event is retargeted to the first element outside of the shadow boundary
+     - Elements passed via a Slot bypasses the shadow boundary
+     - Elements in the shadow tree cannot be queried for. A component can query for elements in its shadow tree using
+       the this.template.querySelector() method.
+-->

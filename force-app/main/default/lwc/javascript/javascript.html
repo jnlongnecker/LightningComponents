@@ -1,0 +1,20 @@
+<template>
+    <div class="container">
+        <h1>{greeting}</h1>
+        <p>Your number is: {myNumber}</p>
+        <p>The @track decorator allows this to be possible!</p>
+        <div class="buttons">
+            <lightning-button label="Clear" onclick={clearList}></lightning-button>
+            <lightning-button label="Add Guitarist" onclick={addGuitarist}></lightning-button>
+            <lightning-button label="Set To Master" onclick={setToMaster}></lightning-button>
+        </div>
+        <div class="guitarist-list">
+            <template iterator:it={allGuitarists}>
+                <span class="info-holder" key={it.value.name}>
+                    <p>{it.value.name}</p>
+                    <img src={it.value.image} alt={it.value.name} />
+                </span>
+            </template>
+        </div>
+    </div>
+</template>

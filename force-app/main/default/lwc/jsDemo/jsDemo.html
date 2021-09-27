@@ -1,0 +1,8 @@
+<template>
+    <div class="container">
+        <c-javascript greeting="Hello Everybody!" number="10"></c-javascript>
+        <p>Click the button to begin the demo of Lifecycle Hooks!</p>
+        <lightning-button label={btnText} onclick={renderChild}></lightning-button>
+        <c-lifecycle-hooks if:true={render}></c-lifecycle-hooks>
+    </div>
+</template>

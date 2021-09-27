@@ -1,0 +1,29 @@
+h1 {
+    margin: 1rem;
+}
+
+.container {
+    width: 70vw;
+    padding: 2rem;
+    background: white;
+    text-align: center;
+}
+
+.iteration-holder {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.info-holder {
+    display: flex;
+}
+
+.info {
+    padding: 1rem;
+}
+
+.info img {
+    height: 10rem;
+}
+

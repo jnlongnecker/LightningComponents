@@ -1,0 +1,30 @@
+<template>
+    <div class="container">
+        <span>#Shadow Boundary</span>
+        <p>Here's a visual representation of the Shadow DOM in action</p>
+        <p>All p tags are styled to be green</p>
+        <p>Below is the child component</p>
+        <div class="child">
+            <c-shadow-child onclick={updateTarget}>
+                <p slot="slot1">Notice the styling carries over</p>
+                <lightning-button slot="slot1" variant="brand" label="Click Me!"></lightning-button>
+                <p>This text is in the child via a slot</p>
+                <lightning-button variant="brand" label="Click Me!"></lightning-button>
+            </c-shadow-child>
+        </div>
+        <p>Try clicking on the buttons. The target will be displayed here: {eventTarget}</p>
+        <div class="element-container">
+            <div if:true={elements}>
+                <template iterator:it={elements}>
+                    <span class="element-list" key={it.value.outerHTML}>
+                        <p if:true={it.first}>These elements are accessible via the Shadow Tree:</p>
+                        <p>{it.value.localName}</p>
+                    </span>
+                </template>
+            </div>
+            <div>
+                <p>There's no slots, so there's no markup available from slots.</p>
+            </div>
+        </div>
+    </div>
+</template>

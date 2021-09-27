@@ -1,0 +1,13 @@
+<template>
+    <!-- LDS components are the recordForm, recordEditForm and recordViewForm, just like in aura -->
+    <!-- LDS will detect changes to the record and refresh it. Also caches the data and optimizes server calls -->
+    <div class="container">
+        <h1>Record Info From LDS and Apex</h1>
+        <template if:true={record.data}>
+            <p>From LDS: {name}</p>
+        </template>
+        <template if:true={someAccount.data}>
+            <p>From Apex: {apexName}</p>
+        </template>
+    </div>
+</template>
