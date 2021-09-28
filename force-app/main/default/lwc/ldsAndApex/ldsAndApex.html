@@ -9,5 +9,9 @@
         <template if:true={someAccount.data}>
             <p>From Apex: {apexName}</p>
         </template>
+        <template if:true={myAccount}>
+            <p>Imperative Call: {myAccount.Name}</p>
+        </template>
+        <lightning-button label="Get Account" onclick={retrieveAccountByName}></lightning-button>
     </div>
 </template>

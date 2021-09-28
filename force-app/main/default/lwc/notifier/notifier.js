@@ -4,8 +4,6 @@ import { LightningElement, api, wire } from 'lwc';
 
 export default class Notifier extends LightningElement {
 
-
-
     fireEvent() {
 
         // We can create an event by creating a new CustomEvent

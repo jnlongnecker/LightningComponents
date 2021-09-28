@@ -13,7 +13,6 @@ export default class MessageService extends LightningElement {
     @wire(MessageContext)
     context;
 
-
     // If we want to communicate across the DOM, we use the Lightning Message Service
     // This functions using a pub/sub architecture, where you publish to a channel and those that are subscribed recieve the message
     // These channels are not restricted to page, only to an application and will work between LWC, LAC, VF pages and across namespaces
