@@ -76,7 +76,7 @@ export default class OsData extends LightningElement {
 
     nextPokemon() {
         this.inputsBusy();
-        getNextPokemon(this.pokemonData)
+        return getNextPokemon(this.pokemonData)
             .then(response => {
                 this.pokemonData = response;
                 this.pokemonName = pokemonData.name;
@@ -90,7 +90,7 @@ export default class OsData extends LightningElement {
 
     prevPokemon() {
         this.inputsBusy();
-        getPrevPokemon(this.pokemonData)
+        return getPrevPokemon(this.pokemonData)
             .then(response => {
                 this.pokemonData = response;
                 this.pokemonName = pokemonData.name;

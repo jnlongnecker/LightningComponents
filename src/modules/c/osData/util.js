@@ -46,7 +46,8 @@ let loadList = () => {
 
 // Reduces the list of all pokemon down to the best match
 let findPokemon = (pokemon) => {
-    if (pokemon.indexOf("-mega") != -1) return findMega(pokemon);
+    let isMega = (pokemon.indexOf("-mega") != -1 || pokemon.indexOf("mega ") != -1);
+    if (isMega) return findMega(pokemon);
 
     // Pull in the pokemon list from the cache
     let pList = JSON.parse(localStorage.getItem(key)).results;
@@ -55,7 +56,7 @@ let findPokemon = (pokemon) => {
     const reducer = (previous, current) => {
         let pIndex = previous.name.indexOf(pokemon);
         let cIndex = current.name.indexOf(pokemon);
-        if (pIndex < 0) pIndex = 100;
+        if (pIndex < 0 || current.name == pokemon) pIndex = 100;
         return (cIndex >= 0 && cIndex < pIndex) ? current : previous;
     };
 
@@ -64,6 +65,7 @@ let findPokemon = (pokemon) => {
 }
 
 let findMega = (pokemon) => {
+    if (pokemon.indexOf("-mega") == -1) pokemon = megaConversion(pokemon);
 
     // Pull in the pokemon list from the cache
     let pList = JSON.parse(localStorage.getItem(key)).results;
@@ -77,7 +79,7 @@ let findMega = (pokemon) => {
     const reducer = (previous, current) => {
         let pIndex = previous.indexOf(pkmRaw);
         let cIndex = current.indexOf(pkmRaw);
-        if (pIndex < 0) pIndex = 100;
+        if (pIndex < 0 || current == pokemon) pIndex = 100;
         return (cIndex >= 0 && cIndex < pIndex) ? current : previous;
     };
 
@@ -89,7 +91,6 @@ let findMega = (pokemon) => {
 let makeCallout = (pokemon) => {
 
     // Match the input string to a valid pokemon name
-    pokemon = megaConversion(pokemon);
     pokemon = findPokemon(pokemon.toLowerCase());
 
     // Fetch the resource
@@ -124,7 +125,8 @@ let pokeapiCallout = (pokemon) => {
 let getNextPokemon = pkmData => {
     let pList = JSON.parse(localStorage.getItem(key)).results;
     let nextId = pkmData.id;
-    if (nextId > pList.length) nextId = 0;
+    nextId = mapId(nextId);
+    if (nextId >= pList.length) nextId = 0;
 
     let nextName = pList[nextId].name;
     return pokeapiCallout(nextName);
@@ -135,6 +137,7 @@ let getPrevPokemon = pkmData => {
     let pList = JSON.parse(localStorage.getItem(key)).results;
     let prevId = pkmData.id - 2;
     if (prevId < 0) prevId = pList.length - 1;
+    prevId = mapId(prevId);
 
     let prevName = pList[prevId].name;
     return pokeapiCallout(prevName);
@@ -175,6 +178,11 @@ let megaToKebab = word => {
     if (word.indexOf(" ") == -1) return word + "-mega";
     word = word.replace(" ", "-mega-");
     return word.replaceAll(" ", "-");
+}
+
+let mapId = id => {
+    if (id > 10000) return 898 + (id - 10000);
+    return id;
 }
 
 export { pokeapiCallout as getPokemon, capitalize, getNextPokemon, getPrevPokemon };
