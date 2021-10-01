@@ -54,7 +54,7 @@
         </section>
 
         <!-- The search role designates an area used for some kind of search controls -->
-        <section role="search">
+        <section tabindex="0" role="search">
 
             <!-- Interactable elements must be constructed with great attention. They must be labeled for clarity -->
             <!-- Construct the page to preserve the proper tab order: input first then button -->
@@ -96,8 +96,8 @@
                 </ul>
             </div>
             <div class="nav-buttons">
-                <button class="button" onclick={prevPokemon}>Previous</button>
-                <button class="button" onclick={nextPokemon}>Next</button>
+                <button aria-label="Previous Pokemon" class="button" onclick={prevPokemon}>Previous</button>
+                <button aria-label="Next Pokemon" class="button" onclick={nextPokemon}>Next</button>
             </div>
         </section>
     </div>
