@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!--
+    Welcome to LWC (Open Source!)
+    In order to start with this, we simply run in the command line: npx create-lwc-app appName
+    If this is your first time running this command, it will install create-lwc-app so in the future, you can just make the app
+    This will add a folder in your current directory with the name that you give it in the command as well as everything else
+    you'll want for developing. You'll typically want to use the Simple Setup and create the Standard Web App as options.
+
+    The command will also give us a boilerplate index.html. Our components are by default in the my namespace, but we can rename this.
+    The standard web app also comes with 2 prebuilt components: app, and greeting.
+
+    We can find documentation on OS LWC here: lwc.dev
+    OS LWC is more updated than the Platform LWC, as it updates roughly every week as opposed to 3x a year for the platform. Additionally,
+    OS LWC has some features that Platform LWC will never have. The downside is that we cannot work directly with data like we can
+    for Platform LWC, and we also do not have access to any prebuilt components (like lightning-button).
+
+    Now for installing and previewing our changes:
+    - We need to install Node.js first
+    - Once that is done, we must update npm: npm install -g npm@latest
+    - Create the project with: npx create-lwc-app appName
+    - This will also install create-lwc-app
+    - In order to preview our build, we need yarn: npm install --global yarn
+    - After, we need nodemon and lwc-services, so run these 2 commands:
+        - yarn global add nodemon
+        - yarn global add lwc-services
+    NOTE: You may need to configure yourself to run scripts: Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+    - Finally, we can run our localhost by using: yarn watch
+    - To kill the command, press Ctrl + C
+-->
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>My LWC App</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    </style>
+    <!-- Block zoom -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <link rel="shortcut icon" href="./resources/favicon.ico" />
+    <link rel="stylesheet" href="./index.css" />
+
+</head>
+
+<body>
+
+    <div id="main"></div>
+
+</body>
+
+</html>
