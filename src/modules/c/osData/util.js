@@ -46,6 +46,7 @@ let loadList = () => {
 
 // Reduces the list of all pokemon down to the best match
 let findPokemon = (pokemon) => {
+    if (pokemon.indexOf("-mega") != -1) return findMega(pokemon);
 
     // Pull in the pokemon list from the cache
     let pList = JSON.parse(localStorage.getItem(key)).results;
@@ -62,10 +63,33 @@ let findPokemon = (pokemon) => {
     return pList.reduce(reducer).name;
 }
 
+let findMega = (pokemon) => {
+
+    // Pull in the pokemon list from the cache
+    let pList = JSON.parse(localStorage.getItem(key)).results;
+
+    // Get only the megas
+    pList = pList.map(value => (value.name.indexOf("-mega") != -1) ? value.name : "zzzz");
+    pList.sort();
+    let pkmRaw = pokemon.substr(0, pokemon.indexOf("-"));
+
+    // Finds the name that has the earliest index of the search string
+    const reducer = (previous, current) => {
+        let pIndex = previous.indexOf(pkmRaw);
+        let cIndex = current.indexOf(pkmRaw);
+        if (pIndex < 0) pIndex = 100;
+        return (cIndex >= 0 && cIndex < pIndex) ? current : previous;
+    };
+
+    // Reduce and return the name
+    return pList.reduce(reducer);
+}
+
 // Makes a callout for the requested pokemon
 let makeCallout = (pokemon) => {
 
     // Match the input string to a valid pokemon name
+    pokemon = megaConversion(pokemon);
     pokemon = findPokemon(pokemon.toLowerCase());
 
     // Fetch the resource
@@ -96,8 +120,29 @@ let pokeapiCallout = (pokemon) => {
         });
 }
 
+// Makes a callout for the next pokemon in the pokedex
+let getNextPokemon = pkmData => {
+    let pList = JSON.parse(localStorage.getItem(key)).results;
+    let nextId = pkmData.id;
+    if (nextId > pList.length) nextId = 0;
+
+    let nextName = pList[nextId].name;
+    return pokeapiCallout(nextName);
+}
+
+// Makes a callout for the previous pokemon in the pokedex
+let getPrevPokemon = pkmData => {
+    let pList = JSON.parse(localStorage.getItem(key)).results;
+    let prevId = pkmData.id - 2;
+    if (prevId < 0) prevId = pList.length - 1;
+
+    let prevName = pList[prevId].name;
+    return pokeapiCallout(prevName);
+}
+
 // Returns a string with the first letter capitalized
 let capitalize = word => {
+    word = megaConversion(word);
     let allWords = word.split('-');
     let ret = "";
     for (let word of allWords) {
@@ -111,4 +156,25 @@ let capitalizeWord = word => {
     return word[0].toUpperCase() + wordBody;
 }
 
-export { pokeapiCallout as getPokemon, capitalize };
+// Converts a word from normal mega syntax to pokeApi mega syntax
+let megaConversion = word => {
+    if (word.indexOf("mega") == -1) return word;
+
+    // Don't skip Meganium
+    if (word.indexOf("megan") != -1 || word == "mega") return word;
+
+    if (word.indexOf("-") != -1) return megaFromKebab(word);
+
+    return megaToKebab(word);
+}
+
+let megaFromKebab = word => "mega-" + word.replace("-mega", "");
+
+let megaToKebab = word => {
+    word = word.replace("mega ", "");
+    if (word.indexOf(" ") == -1) return word + "-mega";
+    word = word.replace(" ", "-mega-");
+    return word.replaceAll(" ", "-");
+}
+
+export { pokeapiCallout as getPokemon, capitalize, getNextPokemon, getPrevPokemon };

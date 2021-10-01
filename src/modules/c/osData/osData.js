@@ -1,5 +1,5 @@
 import { LightningElement, track } from 'lwc';
-import { getPokemon, capitalize } from './util';
+import { getPokemon, capitalize, getNextPokemon, getPrevPokemon } from './util';
 
 export default class OsData extends LightningElement {
     pokemonName = 'ditto';
@@ -66,6 +66,34 @@ export default class OsData extends LightningElement {
         getPokemon(this.pokemonName)
             .then(response => {
                 this.pokemonData = response;
+                this.inputsReady();
+            })
+            .catch(error => {
+                console.error(`Request resulted in an error: ${error}`);
+                this.inputsReady();
+            });
+    }
+
+    nextPokemon() {
+        this.inputsBusy();
+        getNextPokemon(this.pokemonData)
+            .then(response => {
+                this.pokemonData = response;
+                this.pokemonName = pokemonData.name;
+                this.inputsReady();
+            })
+            .catch(error => {
+                console.error(`Request resulted in an error: ${error}`);
+                this.inputsReady();
+            });
+    }
+
+    prevPokemon() {
+        this.inputsBusy();
+        getPrevPokemon(this.pokemonData)
+            .then(response => {
+                this.pokemonData = response;
+                this.pokemonName = pokemonData.name;
                 this.inputsReady();
             })
             .catch(error => {

@@ -39,6 +39,7 @@ hr {
 
 .pkm-results {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
 }
 
@@ -103,6 +104,14 @@ hr {
     align-items: flex-start;
 }
 
+.nav-buttons {
+    flex-basis: 20vw;
+}
+
+.nav-buttons .button {
+    min-width: 5rem;
+}
+
 .button {
     color: var(--theme-red);
     border: 2px solid var(--theme-red);
@@ -110,6 +119,7 @@ hr {
     background: white;
     font-weight: bold;
     font-size: 1rem;
+    text-align: center;
 }
 
 .button:hover {
