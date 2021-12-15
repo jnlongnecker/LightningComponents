@@ -1,6 +1,4 @@
-import { LightningElement, api, wire } from 'lwc';
-
-
+import { LightningElement } from 'lwc';
 
 export default class Notifier extends LightningElement {
 

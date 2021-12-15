@@ -6,6 +6,6 @@ export default class JsDemo extends LightningElement {
 
     renderChild() {
         this.render = !this.render;
-        this.btnText = (this.btnText == "Start" ? "Stop" : "Start");
+        this.btnText = (this.btnText === "Start" ? "Stop" : "Start");
     }
 }

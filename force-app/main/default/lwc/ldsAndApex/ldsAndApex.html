@@ -12,13 +12,7 @@
     <template if:true={myAccount}>
       <p>Imperative Call: {myAccount.Name}</p>
     </template>
-    <lightning-button
-      label="Get Account"
-      onclick={retrieveAccountByName}
-    ></lightning-button>
-    <lightning-button
-      label="Fun Function"
-      onclick={funFunction}
-    ></lightning-button>
+    <lightning-button label="Get Account" onclick={retrieveAccountByName}></lightning-button>
+    <lightning-button label="Fun Function" onclick={funFunction}></lightning-button>
   </div>
 </template>

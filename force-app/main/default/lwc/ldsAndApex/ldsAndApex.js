@@ -7,6 +7,7 @@ import GetAccountWithName from "@salesforce/apex/WebController.GetAccountWithNam
 // It will also cascade renames into the code so it reflects the change. It's just better
 import ACCOUNT_NAME_FIELD from "@salesforce/schema/Account.Name";
 
+// The Lightning Data Service allows us to manipulate records by using its functionality. The simplest way to use this is the prebuilt components that use LDS
 // LDS is built on top of the UI API, but we can leverage that ourselves
 export default class LdsAndApex extends LightningElement {
   @api recordId;
@@ -21,7 +22,7 @@ export default class LdsAndApex extends LightningElement {
   @wire(getRecord, { recordId: "$recordId", fields: [ACCOUNT_NAME_FIELD] })
   record;
   // Something to note: the wire service is good for reading, but not creating, updating or deleting
-  // This is why we use the UI API with @wire to perform these operations
+  // This is why we use the UI API without @wire to perform these operations
 
   // We can use the wire service with our own custom methods as well
   @wire(GetAccount)
@@ -82,3 +83,18 @@ export default class LdsAndApex extends LightningElement {
     console.log(someNum);
   }
 }
+
+/*
+    Perhaps you noticed that 'lwc' is just something we can name to import from. We have other places than lwc and our
+    relative paths to import from, we also have Salesforce modules. Each one is going to being with @salesforce. Let's go over these:
+    - @salesforce/schema : Used to access org object and field data
+    - @salesforce/apex : Used to access apex classes. One of the more commonly used ones as we will call with the @wire decorator
+      - Syntax: @salesforce/apex/namespace.className.methodName
+    - @salesforce/community : Used to access community site information
+    - @salesforce/client/formFactor : Retrieves information about the device running the browser
+      - Possible values: Large (desktop), Medium (tablet), Small (mobile)
+    - @salesforce/label : Used to import custom labels
+    - @salesforce/resourceUrl : Used to access static resources
+    - @salesforce/user : Used to access information about the context user
+    - @salesforce/userPermission : Used to access wheter the current user has a certain permission
+*/
