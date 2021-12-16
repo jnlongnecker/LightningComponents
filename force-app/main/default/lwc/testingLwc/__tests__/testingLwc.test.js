@@ -18,7 +18,7 @@ describe("c-testing-lwc basic", () => {
   // it defines a single test. The it block is identical to the test block, you can use these terms interchangably
   // We give it a name that describes what the test is supposed to do
   it("Ensure guitarists are different", () => {
-    // Where have we seen this syntax before? That's right: webcomponents.dev in the stories!
+    // Where have we seen this syntax before? That's right: oss lwc in index.js!
     const testComponent = createElement("c-testing-lwc", { is: TestingLwc });
 
     // We then insert the element into the jsdom for our testing purposes
@@ -45,7 +45,7 @@ import { getRecord } from "lightning/uiRecordApi";
 
 import GetAccount from "@salesforce/apex/WebController.GetAccount";
 
-// We need to import setImmediate in order to test out our imperataive method call
+// We need to import setImmediate in order to test out our imperative method call
 import { setImmediate } from "timers";
 
 // This is a variable that stores the mock record json
@@ -79,7 +79,7 @@ describe("c-testing-lwc with data", () => {
     // We use the .emit function to send our mock data to the wire service looking for a response
     getRecord.emit(mockRecord);
 
-    // We return a promise to tell the framework to wait for the update before proceeding
+    // We return a resolved promise to tell the framework to wait for the update before proceeding
     return Promise.resolve().then(() => {
       // If you remember, this function should have made a <p> tag render with the account name, so lets check that
       const accountElement = testComponent.shadowRoot.querySelector("p");
@@ -118,7 +118,7 @@ describe("c-testing-lwc with data", () => {
     // Here, we have slightly different Promise syntax. setImmediate is used for long acting functions, which our
     // imperative method call is. Thus, we must return a new Promise(setImmediate)
     return new Promise(setImmediate).then(() => {
-      // Once we're inside the promise, everything is as it was before
+      // Once we've resolved the promise, everything is as it was before
       const accountElement = testComponent.shadowRoot.querySelector("p");
       const actualName = accountElement.textContent;
 
