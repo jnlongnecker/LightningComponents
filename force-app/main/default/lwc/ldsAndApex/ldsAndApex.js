@@ -43,7 +43,7 @@ export default class LdsAndApex extends LightningElement {
   someFunction({ error, data }) {
     // We should only do this if we want to perform some logic on the response and separate it out
     if (data) {
-      console.log(`We got this data: ${data}!`);
+      console.log(`We got this data: ${JSON.stringify(data)}!`);
     } else if (error) {
       console.log(`We got this error: ${error}!`);
     }

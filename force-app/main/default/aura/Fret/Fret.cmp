@@ -1,3 +1,9 @@
+<!--
+    Created by: Jared Longnecker
+    Last Updated: 03/17/2022
+    Description: Component to represent an individual fret on the fretboard. Multiple Fret components make up a String component.
+-->
+
 <aura:component>
     <aura:attribute name="fretNumber" type="Integer" default="1" />
     <aura:attribute name="tuning" type="String" default="E" />

@@ -7,14 +7,14 @@
         // Next, we populate any parameters using this object notation
         apexMethod.setParams({ securityEnforced: false });
 
-        // Finally, we set the callback function. Seem familiar?
+        // Finally, we set the callback function.
         apexMethod.setCallback(this, function (response) {
             if (response.getState() == 'SUCCESS') {
                 component.set("v.acc", response.getReturnValue());
             }
         });
 
-        // Before we finish, we use the A namespace to enqueue the action and send it to the server
+        // Before we finish, we use the A (for Aura) namespace to enqueue the action and send it to the server
         $A.enqueueAction(apexMethod);
     }
 })

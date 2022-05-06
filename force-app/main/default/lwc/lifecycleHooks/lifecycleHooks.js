@@ -30,4 +30,6 @@ export default class LifecycleHooks extends LightningElement {
     disconnectedCallback() {
         alert("Component has been removed! Bye bye!");
     }
+
+    // Not displayed here is the errorCallback() which will get run when a child component throws an error
 }

@@ -1,3 +1,9 @@
+/*
+    Created By: Jared Longnecker
+    Last Updated: 03/17/2022
+    Description: Apex Controller for the Forms Aura Component
+*/
+
 public with sharing class ApexControllerForms {
 
     @AuraEnabled
@@ -10,7 +16,7 @@ public with sharing class ApexControllerForms {
         try {
             ret = [SELECT AccountId FROM Contact WHERE name LIKE : name LIMIT 1];
         } 
-        catch (Exception e) {
+        catch (System.QueryException e) {
 
             // We can allow this to happen by throwing an AuraHandledException
             throw new AuraHandledException('Bad input name');

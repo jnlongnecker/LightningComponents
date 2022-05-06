@@ -1,3 +1,9 @@
+/*
+    Created By: Jared Longnecker
+    Last Updated: 03/17/2022
+    Description: Apex Controller for the ldsAndApex Lightning Web Component
+*/
+
 public with sharing class WebController {
     
     // In addition to AuraEnabled, we also need (cacheable=true) to use a method with the wire service

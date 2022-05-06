@@ -1,3 +1,9 @@
+<!--
+    Created by: Jared Longnecker
+    Last Updated: 03/17/2022
+    Description: Application event for when an individual Fret is clicked
+-->
+
 <aura:event type="APPLICATION" description="A fret on the fretboard was clicked">
     <aura:attribute name="fretNumber" type="Integer" />
     <aura:attribute name="string" type="Integer" />

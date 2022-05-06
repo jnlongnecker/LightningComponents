@@ -1,3 +1,9 @@
+<!--
+    Created by: Jared Longnecker
+    Last Updated: 03/17/2022
+    Description: A component to handle the changing of Guitar settings such as tuning and how many strings are on the guitar.
+-->
+
 <aura:component>
     <aura:attribute name="strings" type="String[]" default="E,A,D,G,B,E" access="private" />
 

@@ -1,5 +1,11 @@
+<!--
+    Created by: Jared Longnecker
+    Last Updated: 03/17/2022
+    Description: Component to provide an overview of the LAC Framework
+-->
+
 <!-- Why Aura?
-    - The Lightning Component Framework has Aura and Web components. We'll focus on Aura components first
+    - The Lightning Component Framework has Aura and Web components. We'll focus on Aura components here
     - LCF is designed around Single Page Applications vs Multiple Page Applications in VisualForce
       - Benefits: Less server calls (more performant), responsive styling
       - LCF also promotes code reusability

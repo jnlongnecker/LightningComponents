@@ -1,3 +1,10 @@
+<!--
+    Created by: Jared Longnecker
+    Last Updated: 03/17/2022
+    Description: A Guitar component holds the entire Guitar, which is multiple String components. 
+    It also holds the Settings component for adjusting the settings of the guitar.
+-->
+
 <aura:component>
     <aura:attribute name="currentNote" type="String" access="private" />
     <aura:attribute name="tuning" type="String[]" access="private" default="['E','A','D','G','B','E']" />

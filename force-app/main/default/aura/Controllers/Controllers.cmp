@@ -1,3 +1,9 @@
+<!--
+    Created by: Jared Longnecker
+    Last Updated: 03/17/2022
+    Description: Component to demonstrate Aura's MVCC architecture
+-->
+
 <!-- Let's talk more about the controllers of Aura -->
 <aura:component implements="flexipage:availableForRecordHome,force:hasRecordId" controller="AuraController">
     <aura:attribute name="acc" type="Account" access="private" />

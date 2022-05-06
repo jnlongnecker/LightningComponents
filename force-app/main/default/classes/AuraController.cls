@@ -1,3 +1,9 @@
+/*
+    Created By: Jared Longnecker
+    Last Updated: 03/17/2022
+    Description: Apex Controller for the Controllers Aura component
+*/
+
 public without sharing class AuraController {
 
     // To be able to use a method in a Lightning Component, we must use the @AuraEnabled annotation

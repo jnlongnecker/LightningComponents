@@ -10,5 +10,4 @@
         Hence the name "Harness App"
     -->
     <c:Guitar />
-    <c:Forms />
 </aura:application>

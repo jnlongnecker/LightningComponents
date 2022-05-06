@@ -1,10 +1,13 @@
+<!--
+    Created by: Jared Longnecker
+    Last Updated: 03/17/2022
+    Description: Component to demonstrate how to test LWC
+-->
+
 <template>
   <p if:true={myRecord.data}>{name}</p>
   <p if:true={apexAccount}>{apexAccount.Name}</p>
-  <lightning-button
-    label="Get Apex"
-    onclick={getApexAccount}
-  ></lightning-button>
+  <lightning-button label="Get Apex" onclick={getApexAccount}></lightning-button>
   <!--
         Unit Tests vs End-to-End Tests
         - Unit Tests
