@@ -10,6 +10,7 @@ import ACCOUNT_NAME_FIELD from "@salesforce/schema/Account.Name";
 // The Lightning Data Service allows us to manipulate records by using its functionality. The simplest way to use this is the prebuilt components that use LDS
 // LDS is built on top of the UI API, but we can leverage that ourselves
 export default class LdsAndApex extends LightningElement {
+  // @api recordId is a special attribute that retrieves the record associated with a record page
   @api recordId;
   @track myAccount;
   @track error;

@@ -8,7 +8,7 @@
 ({
     ShuffleGuitarists: function (component) {
 
-        // Remember, if we want to use the component, we MUST pass it in as a
+        // Remember, if we want to use the component, we MUST pass it in as a parameter
         let size = component.get("v.numChildren");
         let allGuitarists = component.get("v.allGuitarists");
         let numGuitarists = allGuitarists.length;

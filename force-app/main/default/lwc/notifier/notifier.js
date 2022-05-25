@@ -5,7 +5,7 @@ export default class Notifier extends LightningElement {
     fireEvent() {
 
         // We can create an event by creating a new CustomEvent
-        let myEvent = new CustomEvent('customevent', { detail: 'But I don\'t wanna eat broccoli!', bubbles: false, composed: false });
+        let myEvent = new CustomEvent('mycustomevent', { detail: 'But I don\'t wanna eat broccoli!', bubbles: false, composed: false });
         // If we want to pass a parameter, we pass it via detail
         // NOTE: The parameter should be a primitive. If you need to send something else, copy it and then send it
         // JS will pass non-primitives by reference, meaning that your handler can modify data in your component!

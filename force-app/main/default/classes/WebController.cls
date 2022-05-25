@@ -20,3 +20,16 @@ public with sharing class WebController {
         return [SELECT name FROM Account WHERE name LIKE : filter LIMIT 1];
     }
 }
+
+/*
+    While server side security is on us, as it always is with Apex, client side security is handled
+    by something called the Lightning Locker Service, which is provided by the Lightning Component Framework.
+    Here's some of the things that it does:
+
+    - Restricts use of eval()
+    - Hides global objects such as to window by wrapping them in more secure versions
+    - Enforces strict mode, which make code more secure, robust and supported by multiple platforms
+    - Blocks access to SF Global Variables
+    - Blocks use of third party web components
+    - Cleans MIME types of files and blocks dangerous ones (MIME types are certain file types)
+*/

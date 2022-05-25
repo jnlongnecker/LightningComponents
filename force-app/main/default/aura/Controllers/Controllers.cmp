@@ -20,18 +20,19 @@
             <!-- The aura:if can conditionally CREATE components -->
             <!-- You read that right: it's doesn't just hide them, the interior components are *poof* GONE! -->
             <aura:if isTrue="{!v.acc != null}">
-
-                <!-- lightning:recordForm is one of 4 components that uses the LDS (Lightning Data Service) -->
-                <lightning:recordForm recordId="{!v.acc.Id}" objectApiName="Account" columns="2" layoutType="Full"
-                    mode="View" />
-                <!--
-                    Some details about the LDS:
-                    - Handles server calls for us
-                    - Very efficient (only instantiated once per object, regardless of how many components use it)
-                    - Caches the record being used
-                    - LDS Components: lightning:recordForm, recordViewForm, recordEditForm and force:recordData
-                    - Only works with 1 record at a time, and recordForm cannot prepopulate any field values (in case of insertion)
-                -->
+                <div class="slds-p-around_small">
+                    <!-- lightning:recordForm is one of 4 components that uses the LDS (Lightning Data Service) -->
+                    <lightning:recordForm recordId="{!v.acc.Id}" objectApiName="Account" columns="2" layoutType="Full"
+                        mode="View" />
+                    <!--
+                        Some details about the LDS:
+                        - Handles server calls for us
+                        - Very efficient (only instantiated once per object, regardless of how many components use it)
+                        - Caches the record being used
+                        - LDS Components: lightning:recordForm, recordViewForm, recordEditForm and force:recordData
+                        - Only works with 1 record at a time, and recordForm cannot prepopulate any field values (in case of insertion)
+                    -->
+                </div>
             </aura:if>
         </lightning:card>
     </div>

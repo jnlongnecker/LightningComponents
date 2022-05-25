@@ -116,7 +116,7 @@
          event. For example, if you were to click on a <p> tag, the target would be that <p> tag. If this was not changed,
          it would bypass the encapsulation of the Shadow DOM. So instead, this property is changed once the event bubbles
          past the shadow boundary. So instead, the event is retargeted to the first element outside of the shadow boundary
-     - Elements passed via a Slot bypasses the shadow boundary
      - Elements in the shadow tree cannot be queried for. A component can query for elements in its shadow tree using
        the this.template.querySelector() method.
+     - Elements passed via a Slot bypasses the shadow boundary
 -->

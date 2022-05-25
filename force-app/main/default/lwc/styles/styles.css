@@ -1,0 +1,35 @@
+/* 
+    A css module can be imported into multiple other components. This is another way to bypass the Shadow DOM.
+    You can tell a component is a css module because it only contains a css file and a meta file
+*/
+.container {
+    padding: 1rem;
+    background: white;
+    width: 70vw;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.buttons {
+    display: flex;
+    flex-flow: row wrap;
+    width: 50%;
+    justify-content: space-around;
+}
+
+.guitarist-list {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+}
+
+.info-holder {
+    margin: 1rem;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+    font-size: 1.2rem;
+}

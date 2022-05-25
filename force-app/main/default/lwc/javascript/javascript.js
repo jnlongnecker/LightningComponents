@@ -64,5 +64,5 @@ export default class Javascript extends LightningElement {
     - @salesforce/label : Used to import custom labels
     - @salesforce/resourceUrl : Used to access static resources
     - @salesforce/user : Used to access information about the context user
-    - @salesforce/userPermission : Used to access wheter the current user has a certain permission
+    - @salesforce/userPermission : Used to access whether the current user has a certain permission
 */
